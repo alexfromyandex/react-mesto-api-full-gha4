@@ -1,0 +1,11 @@
+.element__info {
+  margin: 0;
+  padding: 0;
+  margin-top: 25px;
+  width: 246px;
+  margin-left: 21px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

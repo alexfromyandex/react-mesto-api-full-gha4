@@ -1,0 +1,17 @@
+.header__link {
+  padding-top: 6px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  color: #FFF;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  font-family: 'Inter';
+  transition: ease .4s;
+  padding-left: 24px;
+}
+
+.header__link:hover {
+  opacity: 0.6;
+}

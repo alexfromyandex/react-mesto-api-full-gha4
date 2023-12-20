@@ -1,0 +1,11 @@
+.popup__input-error_active {
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+  text-align: start;
+  font-size: 12px;
+  line-height: 1;
+  color: #f00;
+  font-weight: 400;
+  font-style: normal;
+}

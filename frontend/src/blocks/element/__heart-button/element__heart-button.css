@@ -1,0 +1,21 @@
+.element__heart-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  margin-right: 5px;
+  width: 22px;
+  height: 19px;
+  background-image: url('../../../images/HeartButton.svg');
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: ease .4s;
+}
+
+.element__heart-button:hover {
+  opacity: .5;
+  cursor: pointer;
+}

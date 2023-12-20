@@ -1,0 +1,9 @@
+.element__like-total {
+  max-height: 13px;
+  margin-top: 3px;
+  border-style: none;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+}

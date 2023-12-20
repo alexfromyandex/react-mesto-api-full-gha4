@@ -1,0 +1,15 @@
+.popup-photo__container {
+  max-width: 75vw;
+  max-height: 75vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  }
+  
+  @media (max-width: 767px) {
+    .popup-photo__container {
+      max-width: 240px;
+    }
+  }
