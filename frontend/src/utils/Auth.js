@@ -1,5 +1,5 @@
 import checkResponse from "./CheckResponse";
-export const BASE_URL = 'http://localhost:3000/api';
+export const BASE_URL = 'http://mesto.lyudmila.nomoredomainsmonster.ru/api';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
