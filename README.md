@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP 51.250.11.195
 
-Frontend https://...
+Frontend https://mesto.lyudmila.nomoredomainsmonster.ru
 
-Backend https://...
+Backend https://mesto.lyudmila.nomoredomainsmonster.ru
