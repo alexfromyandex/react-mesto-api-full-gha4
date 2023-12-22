@@ -61,7 +61,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).send({ message: statusCode === 500 ? 'На сервере произошла ошибка' : message });
 });
 
-mongoose.connect('mongodb://localhost:27017/mestodb')
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
   .then(() => {
     console.log('MongoDB connected');
   });
