@@ -26,7 +26,7 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.post('/signup', celebrate({
+app.post('/api/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
@@ -37,7 +37,7 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-app.post('/signin', celebrate({
+app.post('/api/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
@@ -46,8 +46,8 @@ app.post('/signin', celebrate({
 
 app.use(auth);
 
-app.use('/users', userRouter);
-app.use('/cards', cardRouter);
+app.use('/api/users', userRouter);
+app.use('/api/cards', cardRouter);
 app.use('/', (req, res, next) => {
   next(new NotFoundError('Такой страницы не существует'));
 });
