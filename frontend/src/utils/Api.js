@@ -105,7 +105,7 @@ class Api {
   } 
 
 const optionsApi = {
-  url: 'http://localhost:3000',
+  url: 'http://localhost:3000/api',
 } 
 
 const api = new Api(optionsApi)
