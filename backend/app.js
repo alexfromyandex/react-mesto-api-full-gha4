@@ -54,7 +54,7 @@ app.use(auth);
 
 app.use('/api/users', userRouter);
 app.use('/api/cards', cardRouter);
-app.use('/', (req, res, next) => {
+app.use('/api/', (req, res, next) => {
   next(new NotFoundError('Такой страницы не существует'));
 });
 

@@ -4,15 +4,15 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const cardController = require('../controllers/cards');
 
-router.get('/api/', cardController.readAllCards);
+router.get('/', cardController.readAllCards);
 
-router.get('/api/:cardId', celebrate({
+router.get('/:cardId', celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().alphanum().length(24),
   }),
 }), cardController.readTheCard);
 
-router.post('/api/', celebrate({
+router.post('/', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     // eslint-disable-next-line no-useless-escape
@@ -20,19 +20,19 @@ router.post('/api/', celebrate({
   }),
 }), cardController.createCard);
 
-router.delete('/api/:cardId', celebrate({
+router.delete('/:cardId', celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().alphanum().length(24),
   }),
 }), cardController.deleteCard);
 
-router.put('/api/:cardId/likes', celebrate({
+router.put('/:cardId/likes', celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().alphanum().length(24),
   }),
 }), cardController.likeCard);
 
-router.delete('/api/:cardId/likes', celebrate({
+router.delete('/:cardId/likes', celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().alphanum().length(24),
   }),
