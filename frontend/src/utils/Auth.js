@@ -1,7 +1,6 @@
 import checkResponse from "./CheckResponse";
 export const BASE_URL = 'http://localhost:3000';
 
-
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -39,7 +38,7 @@ export const tokenCheck = (token) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token,
+      authorization: token,
     }
   })
   .then(checkResponse)

@@ -29,15 +29,17 @@ function App() {
 
   React.useEffect(() => {
     tokenCheck();
-    api.getCards()
-      .then ((cardsArray) => {
-        setCards(cardsArray);
-      })
-      .catch((err) => {
-        console.log(err);
-      })  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getCards()])
+        .then(([userData, cardsArray]) => {
+          setCards(cardsArray);
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.log(err);
+        }) 
+        // eslint-disable-next-line
+     }}, [loggedIn]);
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -68,7 +70,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(item => item === currentUser._id);
     if (!isLiked) {
       api.likeCard(card._id)
         .then((newCard) => {
@@ -97,16 +99,6 @@ function App() {
       console.log(err);
     })
   }
-
- React.useEffect(() => {
-  api.getUserInfo()
-    .then ((res) => {
-      setCurrentUser(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    }) 
- }, []);
 
  function handleUpdateUser(data) {
   api.patchUserInfo(data)
@@ -160,13 +152,13 @@ function App() {
   }
 
   function tokenCheck() {
-    if (localStorage.getItem('token')){
-      const jwt = localStorage.getItem('token');
+    if (localStorage.getItem('token')) {
+      const jwt = localStorage.getItem('token'); 
       if (jwt){
         Auth.tokenCheck(jwt)
         .then((res) => {
          setUserData({
-            email: res.data.email
+            email: res.email
           });
           setLoggedIn(true);
           navigate("/", {replace: true})

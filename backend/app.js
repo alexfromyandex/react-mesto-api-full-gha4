@@ -7,6 +7,7 @@ const cors = require('cors');
 const { celebrate, Joi } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const { login, createUser } = require('./controllers/users');
@@ -17,39 +18,14 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const allowedCors = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://localhost:3001/users/me',
-  'localhost:3000',
-  'localhost:3001',
-];
-
-/* const corsOptions = {
-  origin: {
-    function(req, res) {
-      const { origin } = req.headers;
-      if (allowedCors.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', origin);
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-        res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-      }
-    },
-  },
-};*/
-
 app.use(cors());
 
 app.use(cookieParser());
 
 app.use(express.json());
 
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), login);
+app.use(requestLogger);
+
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
@@ -61,6 +37,13 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
+app.post('/signin', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+  }),
+}), login);
+
 app.use(auth);
 
 app.use('/users', userRouter);
@@ -68,6 +51,8 @@ app.use('/cards', cardRouter);
 app.use('/', (req, res, next) => {
   next(new NotFoundError('Такой страницы не существует'));
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 // eslint-disable-next-line no-unused-vars

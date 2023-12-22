@@ -37,7 +37,7 @@ function createCard(req, res, next) {
   return cardModel.create({ name, link, owner: req.user._id })
     // eslint-disable-next-line arrow-body-style
     .then((card) => {
-      return res.status(201).send({ data: card });
+      return res.status(201).send(card);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -59,7 +59,7 @@ function deleteCard(req, res, next) {
         return cardModel.findByIdAndDelete(cardId)
           // eslint-disable-next-line no-shadow, arrow-body-style
           .then((card) => {
-            return res.status(200).send({ data: card });
+            return res.status(200).send(card);
           });
       }
       throw new ForbiddenError('Вы не можете удалять чужие карточки.');
@@ -83,7 +83,7 @@ function likeCard(req, res, next) {
       if (!card) {
         throw new NotFoundError('Карточка с указанным _id не найдена.');
       }
-      return res.send({ data: card });
+      return res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -104,7 +104,7 @@ function dislikeCard(req, res, next) {
       if (!card) {
         throw new NotFoundError('Карточка с указанным _id не найдена.');
       }
-      return res.send({ data: card });
+      return res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {

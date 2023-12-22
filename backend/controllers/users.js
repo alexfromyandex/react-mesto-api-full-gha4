@@ -85,7 +85,7 @@ function updateUser(req, res, next) {
       if (!user) {
         throw new NotFoundError('Пользователь по указанному _id не найден.');
       }
-      return res.send({ data: user });
+      return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -103,7 +103,7 @@ function updateUserAvatar(req, res, next) {
       if (!user) {
         throw new NotFoundError('Пользователь по указанному _id не найден.');
       }
-      return res.send({ data: user });
+      return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -119,7 +119,7 @@ function login(req, res, next) {
   userModel.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'super-puper-secret', { expiresIn: '7d' });
-      res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true });
+      /* res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true }); */
       res.send({ token });
     })
     .catch(next);

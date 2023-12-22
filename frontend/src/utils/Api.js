@@ -1,7 +1,7 @@
 class Api {
   constructor({ url, headers}) {
     this._url = url;
-    this._headers = headers;
+    this._headers = headers; 
   }
 
   _request(url, options) {
@@ -16,20 +16,29 @@ class Api {
     
   getUserInfo() {
     return this._request(`${this._url}/users/me`, {
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token'),
+      }
     })
   }
 
   getCards() {
     return this._request(`${this._url}/cards`, {
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token'),
+      }
     })
   }
 
   patchUserInfo({name, about}) {
     return this._request(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token'),
+      },
       body: JSON.stringify({
         name: name,
         about: about
@@ -40,7 +49,10 @@ class Api {
   postNewCard({name, link}) {
     return this._request(`${this._url}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token')
+      },
       body: JSON.stringify({
         name: name,
         link: link
@@ -51,46 +63,50 @@ class Api {
   deleteCard(id) {
     return this._request(`${this._url}/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token'),
+      }
     })
   }
 
   likeCard(id) {
     return this._request(`${this._url}/cards/${id}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token'),
+      }
     })
   }
 
   unlikeCard(id) {
     return this._request(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token'),
+      }
     })
   }
 
   patchUserAvatar({link}) {
     return this._request(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers : {
+        'Content-Type': "application/json",
+        authorization: localStorage.getItem('token'),
+      },
       body: JSON.stringify({
         avatar: link
       })
     })
   }
-  }
-
-const jwt = localStorage.getItem('token'); 
-console.log(jwt);
+  } 
 
 const optionsApi = {
   url: 'http://localhost:3000',
-  headers : {
-    //authorization: ,
-    'Content-Type': "application/json",
-    'Authorization': jwt,
-  }
-}
+} 
 
 const api = new Api(optionsApi)
 
