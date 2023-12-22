@@ -4,11 +4,11 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const userController = require('../controllers/users');
 
-router.get('/', userController.readAllUsers);
+router.get('/api/', userController.readAllUsers);
 
-router.get('/me', userController.readUser);
+router.get('/api/me', userController.readUser);
 
-router.patch('/me', celebrate({
+router.patch('/api/me', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().alphanum().length(24),
   }),
@@ -18,13 +18,13 @@ router.patch('/me', celebrate({
   }),
 }), userController.updateUser);
 
-router.get('/:userId', celebrate({
+router.get('/api/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().alphanum().length(24),
   }),
 }), userController.readTheUser);
 
-router.patch('/me/avatar', celebrate({
+router.patch('/api/me/avatar', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().alphanum().length(24),
   }),
