@@ -26,7 +26,7 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.get('/crash-test', () => {
+app.get('/api/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
@@ -54,7 +54,7 @@ app.use(auth);
 
 app.use('/api/users', userRouter);
 app.use('/api/cards', cardRouter);
-app.use('/api/', (req, res, next) => {
+app.use('/', (req, res, next) => {
   next(new NotFoundError('Такой страницы не существует'));
 });
 

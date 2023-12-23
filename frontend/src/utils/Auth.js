@@ -2,6 +2,7 @@ import checkResponse from "./CheckResponse";
 export const BASE_URL = 'http://mesto.lyudmila.nomoredomainsmonster.ru/api';
 
 export const register = (email, password) => {
+  console.log(window.location.href);
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
