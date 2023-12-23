@@ -1,5 +1,5 @@
 import checkResponse from "./CheckResponse";
-export const BASE_URL = 'https://mesto.lyudmila.nomoredomainsmonster.ru';
+export const BASE_URL = 'https://mesto.lyudmila.nomoredomainsmonster.ru/api';
 
 export const register = (email, password) => {
   console.log(window.location.href);

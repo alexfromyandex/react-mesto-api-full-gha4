@@ -105,7 +105,7 @@ class Api {
   } 
 
 const optionsApi = {
-  url: 'https://mesto.lyudmila.nomoredomainsmonster.ru',
+  url: 'https://mesto.lyudmila.nomoredomainsmonster.ru/api',
 } 
 
 const api = new Api(optionsApi)
