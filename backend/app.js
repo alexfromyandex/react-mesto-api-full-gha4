@@ -26,13 +26,13 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.get('/api/crash-test', () => {
+app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
 
-app.post('/signup', celebrate({
+app.post('/api/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
@@ -43,7 +43,7 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-app.post('/signin', celebrate({
+app.post('/api/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
@@ -54,7 +54,7 @@ app.use(auth);
 
 app.use('/api/users', userRouter);
 app.use('/api/cards', cardRouter);
-app.use('/', (req, res, next) => {
+app.use('/api/', (req, res, next) => {
   next(new NotFoundError('Такой страницы не существует'));
 });
 
