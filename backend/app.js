@@ -32,7 +32,7 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/api/signup', celebrate({
+app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
@@ -43,7 +43,7 @@ app.post('/api/signup', celebrate({
   }),
 }), createUser);
 
-app.post('/api/signin', celebrate({
+app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
@@ -52,9 +52,9 @@ app.post('/api/signin', celebrate({
 
 app.use(auth);
 
-app.use('/api/users', userRouter);
-app.use('/api/cards', cardRouter);
-app.use('/api/', (req, res, next) => {
+app.use('/users', userRouter);
+app.use('/cards', cardRouter);
+app.use('/', (req, res, next) => {
   next(new NotFoundError('Такой страницы не существует'));
 });
 

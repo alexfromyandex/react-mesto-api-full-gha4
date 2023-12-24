@@ -1,5 +1,7 @@
 import checkResponse from "./CheckResponse";
-export const BASE_URL = 'https://mesto.lyudmila.nomoredomainsmonster.ru/api';
+//export const BASE_URL = 'http://localhost:3000'
+//export const BASE_URL = 'https://mesto.lyudmila.nomoredomainsmonster.ru/api';
+export const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {

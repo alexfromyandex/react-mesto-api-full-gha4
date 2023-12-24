@@ -105,7 +105,9 @@ class Api {
   } 
 
 const optionsApi = {
-  url: 'https://mesto.lyudmila.nomoredomainsmonster.ru/api',
+  //url: 'http://localhost:3000'
+  //url: 'https://mesto.lyudmila.nomoredomainsmonster.ru/api',
+  url: process.env.REACT_APP_API_URL,
 } 
 
 const api = new Api(optionsApi)
