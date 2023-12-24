@@ -13,4 +13,4 @@ IP 51.250.11.195
 
 Frontend https://mesto.lyudmila.nomoredomainsmonster.ru
 
-Backend https://mesto.lyudmila.nomoredomainsmonster.ru
+Backend https://mesto.lyudmila.nomoredomainsmonster.ru/api
